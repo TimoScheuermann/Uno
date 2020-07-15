@@ -31,9 +31,5 @@ export default router;
 export function getTitle(route: Route = router.currentRoute): string {
   let name: string = route.meta.title;
   if (!name) prefix;
-  if (name.includes('%icon%'))
-    name = name.split('%icon%').join(route.params.icon);
-  if (name.includes('%issue%'))
-    name = name.split('%issue%').join(route.params.issue);
   return name;
 }
