@@ -6,16 +6,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    rounds: [
-      { winner: 'timo', points: 42, start: 1604682786287 },
-      { winner: 'timo', points: 74, start: 1604682787525 },
-      { winner: 'timo', points: 8, start: 1604682788277 },
-      { winner: 'timo', points: 5, start: 1604682788736 },
-      { winner: 'petra', points: 46, start: 1604682790740 },
-      { winner: 'petra', points: 5, start: 1604682791759 },
-      { winner: 'petra', points: 22, start: 1604682792840 },
-      { winner: 'petra', points: 47, start: 1604682793720 }
-    ] as IRound[]
+    rounds: [] as IRound[]
   },
   getters: {
     rounds: (state: any): IRound[] => {
