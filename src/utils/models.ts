@@ -1,5 +1,7 @@
 export interface IRound {
   start: number;
-  winner: string;
+  winner: 'timo' | 'petra';
   points: number;
+  drawTimo: number;
+  drawPetra: number;
 }

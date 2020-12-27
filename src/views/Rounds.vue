@@ -3,16 +3,18 @@
     <h1>Runden</h1>
     <div class="rounds">
       <div class="round" v-for="r in rounds" :key="r.start">
-        <div class="winner">
+        <div class="winner" :class="r.winner">
           <i class="ti-trophy"></i>
-          <span :class="r.winner">{{ r.winner }}</span>
+          <span>{{ r.winner }}</span>
         </div>
         <div class="points">{{ r.points }}</div>
+        <div class="fours">{{ r.drawTimo }} - {{ r.drawPetra }}</div>
         <tc-button
           icon="cross"
+          variant="opaque"
           tfbackground="error"
           @click="$store.commit('remove', r.start)"
-        ></tc-button>
+        />
       </div>
     </div>
   </div>
@@ -32,7 +34,7 @@ export default class Rounds extends Vue {
 <style lang="scss" scoped>
 .rounds {
   .round {
-    padding: 20px;
+    padding: 8px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -40,21 +42,23 @@ export default class Rounds extends Vue {
     background: $container;
     border-radius: $border-radius;
     .points {
-      font-weight: bold;
+      font-weight: bolder;
+      font-style: italic;
+      letter-spacing: -1px;
     }
     .winner {
-      i {
-        color: gold;
+      margin-left: 10px;
+      font-size: 18px;
+      &.timo {
+        color: $primary;
+      }
+      &.petra {
+        color: $error;
       }
       span {
-        &.timo {
-          color: $primary;
-        }
-        &.petra {
-          color: $error;
-        }
         text-transform: capitalize;
-        margin-left: 5px;
+        font-weight: 500;
+        margin-left: 10px;
       }
     }
   }

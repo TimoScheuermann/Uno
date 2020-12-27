@@ -10,23 +10,19 @@ const store = new Vuex.Store({
   },
   getters: {
     rounds: (state: any): IRound[] => {
-      return state.rounds || [];
-    },
-    timo: (state: any): number => {
-      return (state.rounds as IRound[])
-        .filter(x => x.winner !== 'timo')
-        .map(x => x.points)
-        .reduce((a, b) => a + b, 0);
-    },
-    petra: (state: any): number => {
-      return (state.rounds as IRound[])
-        .filter(x => x.winner !== 'petra')
-        .map(x => x.points)
-        .reduce((a, b) => a + b, 0);
+      return ((state.rounds || []) as IRound[]).reverse();
     }
   },
   mutations: {
-    add(state: any, round: { winner: string; points: number }) {
+    add(
+      state: any,
+      round: {
+        winner: string;
+        points: number;
+        drawTimo: number;
+        drawPetra: number;
+      }
+    ) {
       state.rounds.push({
         ...round,
         start: new Date().getTime()
