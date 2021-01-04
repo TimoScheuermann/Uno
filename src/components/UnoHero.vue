@@ -21,7 +21,7 @@
         <UnoAnimatedNumber :number="foursTimo" />
       </tl-flow>
       <tl-flow class="score amount">
-        <UnoAnimatedNumber :number="amount" />€
+        <UnoAnimatedNumber :number="amount" :divider="100" />€
       </tl-flow>
       <tl-flow class="score four">
         <span>+4</span>

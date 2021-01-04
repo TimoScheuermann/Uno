@@ -30,6 +30,17 @@ const store = new Vuex.Store({
     },
     remove(state: any, date: number) {
       state.rounds = state.rounds.filter((x: IRound) => x.start !== date);
+    },
+    hotswap(state: any, start: number) {
+      state.rounds = state.rounds.map((x: IRound) => {
+        if (x.start !== start) {
+          return x;
+        }
+        return {
+          ...x,
+          winner: x.winner === 'petra' ? 'timo' : 'petra'
+        };
+      });
     }
   }
 });

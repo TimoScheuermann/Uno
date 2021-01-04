@@ -108,3 +108,109 @@ export function getMostCheapestRoundPetra(): number | string {
     .map(x => x.points)
     .sort((a, b) => a - b)[0];
 }
+
+export function getBestWinningSeriesTimo(): number {
+  return getEveryRound()
+    .map(x => {
+      return {
+        winner: x.winner,
+        series: 0,
+        bestSeries: 0
+      };
+    })
+    .reduce(
+      (prev, curr) => {
+        if (curr.winner === 'timo') {
+          const series = prev.series + 1;
+          let prevBest = prev.bestSeries;
+          if (series > prevBest) prevBest = series;
+          return {
+            winner: 'timo',
+            series: series,
+            bestSeries: prevBest
+          };
+        }
+        return {
+          winner: 'timo',
+          series: 0,
+          bestSeries: prev.bestSeries
+        };
+      },
+      { winner: 'timo', series: 0, bestSeries: 0 }
+    ).bestSeries;
+}
+
+export function getBestWinningSeriesPetra(): number {
+  return getEveryRound()
+    .map(x => {
+      return {
+        winner: x.winner,
+        series: 0,
+        bestSeries: 0
+      };
+    })
+    .reduce(
+      (prev, curr) => {
+        if (curr.winner === 'petra') {
+          const series = prev.series + 1;
+          let prevBest = prev.bestSeries;
+          if (series > prevBest) prevBest = series;
+          return {
+            winner: 'petra',
+            series: series,
+            bestSeries: prevBest
+          };
+        }
+        return {
+          winner: 'petra',
+          series: 0,
+          bestSeries: prev.bestSeries
+        };
+      },
+      { winner: 'petra', series: 0, bestSeries: 0 }
+    ).bestSeries;
+}
+
+export function getWinningSeriesTimo(): number {
+  return [...getEveryRound()]
+    .reverse()
+    .map(x => {
+      return { winner: x.winner, series: 0 };
+    })
+    .reduce(
+      (prev, curr) => {
+        return {
+          winner: 'timo',
+          series: curr.winner === 'timo' ? ++prev.series : 0
+        };
+      },
+      { winner: 'timo', series: 0 }
+    ).series;
+}
+
+export function getWinningSeriesPetra(): number {
+  return [...getEveryRound()]
+    .reverse()
+    .map(x => {
+      return { winner: x.winner, series: 0 };
+    })
+    .reduce(
+      (prev, curr) => {
+        return {
+          winner: 'petra',
+          series: curr.winner === 'petra' ? ++prev.series : 0
+        };
+      },
+      { winner: 'petra', series: 0 }
+    ).series;
+}
+
+export function getAverageLossAmountTimo(): number {
+  const amount = getPointsTimo() / getWonRoundsPetra().length;
+  return Math.round(amount * 100) / 100;
+}
+
+export function getAverageLossAmountPetra(): number {
+  const amount = getPointsPetra() / getWonRoundsTimo().length;
+  return Math.round(amount * 100) / 100;
+}

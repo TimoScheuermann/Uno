@@ -4,7 +4,7 @@
     <div class="rounds">
       <div class="round" v-for="r in rounds" :key="r.start">
         <div class="winner" :class="r.winner">
-          <i class="ti-trophy"></i>
+          <i class="ti-trophy" @click="hotswap(r)"></i>
           <span>{{ r.winner }}</span>
         </div>
         <div class="points">{{ r.points }}</div>
@@ -27,6 +27,10 @@ import { Vue, Component } from 'vue-property-decorator';
 export default class Rounds extends Vue {
   get rounds(): IRound[] {
     return this.$store.getters.rounds;
+  }
+
+  public hotswap(r: IRound): void {
+    r.winner = r.winner === 'timo' ? 'petra' : 'timo';
   }
 }
 </script>

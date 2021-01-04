@@ -1,6 +1,6 @@
 <template>
   <span class="uno-animated-number">
-    {{ displayNumber }}
+    {{ displayNumber / divider }}
   </span>
 </template>
 
@@ -9,6 +9,7 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 @Component
 export default class UnoAnimatedNumber extends Vue {
   @Prop({ default: 0 }) number!: number;
+  @Prop({ default: 1 }) divider!: number;
 
   public displayNumber = 0;
   public interval = 0;

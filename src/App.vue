@@ -42,6 +42,11 @@ body {
   margin: 0;
 }
 
+.app,
+body {
+  min-height: 100vh;
+}
+
 h1 {
   text-align: center;
 }
